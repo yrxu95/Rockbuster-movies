@@ -1,0 +1,11 @@
+# SQL query is showing total revenue in each movie with rating and category.
+
+SELECT d.title, d.rating, f.name AS category,
+FROM payment a
+LEFT JOIN rental b ON a.rental_id = b.rental_id
+LEFT JOIN inventory c ON b.inventory_id = c.inventory_id
+LEFT JOIN film d ON c.film_id = d.film_id
+LEFT JOIN film_category e ON e.film_id = d.film_id
+LEFT JOIN category f ON f.category_id = e.category_id
+GROUP BY 1,2,3
+ORDER BY total_revenue DESC
